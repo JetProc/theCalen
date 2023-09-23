@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  width: 100%;
+  user-select: none;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: 'GyeonggiTitleM', serif;
+}
+#findIdcontentsContainer,
+#findPwcontentsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#findPwcontentsContainer {
+  margin-top: 80px;
+}
+.findText {
+  font-size: 30px;
+  font-weight: 100;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+.inputBox {
+  margin-top: 30px;
+  width: 260px;
+  height: 30px;
+  font-size: 18px;
+  letter-spacing: 0.2rem;
+  background-color: transparent;
+  border-bottom: 2px solid var(--main-color);
+  transition: all 0.2s ease-in-out;
+}
+.inputBox:focus {
+  border-bottom: 4px solid var(--main-color-dark);
+}
+
+.findBtn {
+  margin-top: 30px;
+  width: 110px;
+  height: 34px;
+  border-radius: 100px;
+  background-color: var(--main-color);
+  color: #ffffff;
+}
+#goBackBtn {
+  margin-top: 40px;
+  font-size: 12px;
+}

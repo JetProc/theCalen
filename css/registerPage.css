@@ -1,0 +1,97 @@
+body {
+  display: flex;
+  width: 100%;
+  user-select: none;
+}
+
+#mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: 'GyeonggiTitleM', serif;
+}
+#contentsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#registerText {
+  margin-bottom: 30px;
+  font-size: 36px;
+  font-weight: 100;
+}
+#inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+.inputBox {
+  margin-top: 30px;
+  width: 320px;
+  height: 30px;
+  font-size: 18px;
+  letter-spacing: 0.2rem;
+  background-color: transparent;
+  border-bottom: 2px solid var(--main-color);
+  transition: all 0.2s ease-in-out;
+}
+.inputBox:focus {
+  border-bottom: 4px solid var(--main-color-dark);
+}
+#teamText,
+#positionText {
+  display: flex;
+  align-self: center;
+  font-size: 20px;
+  margin-top: 30px;
+}
+#teamInputContainer,
+#positionInputContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.teamInput,
+.positionInput {
+  display: none;
+}
+.teamInput:checked + label,
+.positionInput:checked + label {
+  background-color: var(--main-color-dark);
+  color: #fff;
+  transform: scale(1.05);
+}
+.teamInputLabel,
+.positionInputLabel {
+  display: inline-block;
+  cursor: pointer;
+  width: 70px;
+  height: 28px;
+  line-height: 28px;
+  margin: 0 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 100px;
+  border: 2px solid var(--main-color);
+  background-color: transparent;
+  transition: all 0.1s ease-out;
+}
+.teamInputLabel:hover,
+.positionInputLabel:hover {
+  transform: scale(1.05);
+}
+
+#goBackBtn {
+  margin-top: 14px;
+  font-size: 12px;
+}
+#registerBtn {
+  margin-top: 40px;
+  width: 110px;
+  height: 34px;
+  border-radius: 100px;
+  background-color: var(--main-color);
+  color: #ffffff;
+}

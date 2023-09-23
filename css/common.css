@@ -1,0 +1,204 @@
+/* 영문 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&family=Noto+Serif+KR:wght@200&display=swap');
+
+/* 한글 폰트 */
+@font-face {
+  font-family: 'GyeonggiTitleM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiTitleM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* RESET CSS */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  height: 100%;
+  line-height: 1;
+  background-color: #f8f4e8;
+}
+ol,
+ul {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+input,
+textarea {
+  outline: none;
+  border: none;
+}
+
+/* COMMON CSS */
+:root {
+  --main-color: #d7a400;
+  --main-color-light: #ffefbe;
+  --main-color-dark: #c59b12;
+  --gray-color-default: #a7a7a7;
+  --gray-color-hover: #2f2f2f;
+}
+
+.additionalText {
+  color: var(--gray-color-default);
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+}
+.additionalText:hover {
+  color: var(--gray-color-hover);
+}
+input {
+  font-family: 'GyeonggiTitleM', serif;
+  font-weight: 100;
+}
+*::placeholder {
+  color: #b8b8b8;
+  font-family: 'GyeonggiTitleM', serif;
+  font-weight: 100;
+}
+input[type='button'],
+input[type='submit'] {
+  transition: all 0.15s ease-out;
+}
+input[type='button']:hover,
+input[type='submit']:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#introductionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 1000px;
+  height: 100vh;
+  padding: 60px;
+  box-sizing: border-box;
+  background: linear-gradient(270deg, #f5e6b6, #fcf8e9cd);
+}
+#title {
+  display: flex;
+  align-self: flex-end;
+  text-align: end;
+
+  font-size: 100px;
+  color: var(--main-color);
+  text-shadow: 3px 3px 1px #5b5b5b;
+  line-height: 110px;
+  letter-spacing: 0.3rem;
+  font-family: 'JetBrains Mono', serif;
+  font-weight: 400;
+}
+#picture {
+  width: 380px;
+}
+
+/* #title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 22px;
+  font-size: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+#title:hover {
+  transform: scale(1.1);
+} */

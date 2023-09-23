@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../../css/loginPage.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+  </head>
+  <body>
+    <div id="introductionContainer">
+      <h1 id="title">The<br />Calen</h1>
+      <img src="../../src/pictures/loginPicture.svg" alt="The Calen Picture" id="picture" />
+    </div>
+    <main id="mainContainer">
+      <form action="./homePage.html" id="contentsContainer">
+        <h3 id="loginText">로그인</h3>
+        <article id="inputContainer">
+          <input type="text" placeholder="아이디" class="inputBox" name="id" required autofocus />
+          <input type="password" placeholder="비밀번호" class="inputBox" name="pw" required />
+        </article>
+        <article id="additionalBtnContainer">
+          <a href="./registerPage.html" class="additionalText">회원가입</a>
+          <a href="./findMyInfoPage.html" class="additionalText">아이디/비밀번호 찾기</a>
+        </article>
+        <input type="submit" value="로그인" id="loginBtn" />
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Calen</title>
+    <link rel="stylesheet" href="../../css/myPage.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+  </head>
+  <body>
+    <nav id="navBar">
+      <section id="headerContainer">
+        <img src="../../src/pictures/headerPicture.png" alt="headerPicture" id="headerPicture" />
+        <h1 id="headerTitle">The Calen</h1>
+      </section>
+      <section id="profileContainer">
+        <img src="../../src/icons/profileIcon.png" id="userProfileIcon" />
+        <p id="welcomeText">홍길동 님 환영합니다</p>
+        <a id="logoutBtn" onclick="" class="additionalText">로그아웃</a>
+      </section>
+      <section id="menuContainer">
+        <div id="calendarMenuContainer">
+          <img src="../../src/icons/calenderIcon.png" alt="calendarIcon" id="calendarIcon" class="menuIcon" />
+          <h2>캘린더</h2>
+        </div>
+        <div id="mypageMenuContainer">
+          <img src="../../src/icons/profileIcon.png" alt="profileIcon" id="mypageIcon" class="menuIcon" />
+          <h2>마이페이지</h2>
+        </div>
+      </section>
+    </nav>
+    <main id="mainContainer">
+      <form action="" id="contentsContainer">
+        <h3 id="mypageText">마이페이지</h3>
+        <article id="inputContainer">
+          <input type="text" placeholder="아이디" class="inputBox" name="id" required autofocus />
+          <input type="password" placeholder="비밀번호" class="inputBox" name="pw" required />
+          <input type="password" placeholder="비밀번호 확인" class="inputBox" name="confirmPw" required />
+          <input type="text" placeholder="이름" class="inputBox" name="name" required />
+          <input type="tel" placeholder="핸드폰 번호" class="inputBox" name="phonenum" required />
+          <h4 id="teamText">부서</h4>
+          <div id="teamInputContainer">
+            <input type="radio" id="developTeam" class="teamInput" name="team" required checked="checked" />
+            <label for="developTeam" class="teamInputLabel">개발팀</label>
+            <input type="radio" id="planningTeam" class="teamInput" name="team" required />
+            <label for="planningTeam" class="teamInputLabel">기획팀</label>
+            <input type="radio" id="designTeam" class="teamInput" name="team" required />
+            <label for="designTeam" class="teamInputLabel">디자인팀</label>
+          </div>
+          <h4 id="positionText">직급</h4>
+          <div id="positionInputContainer">
+            <input type="radio" id="teamLeader" class="positionInput" name="position" required />
+            <label for="teamLeader" class="positionInputLabel">팀장</label>
+            <input type="radio" id="teamMember" class="positionInput" name="position" required checked="checked" />
+            <label for="teamMember" class="positionInputLabel">팀원</label>
+          </div>
+        </article>
+        <input type="submit" value="수정" id="modifyBtn" />
+        <a href="./homePage.html" id="goBackBtn" class="additionalText">캘린더 페이지로 이동</a>
+      </form>
+    </main>
+  </body>
+</html>
