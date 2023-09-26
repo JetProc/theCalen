@@ -40,18 +40,34 @@
           <input type="tel" placeholder="핸드폰 번호" class="inputBox" name="phonenum" required />
           <h4 id="teamText">부서</h4>
           <div id="teamInputContainer">
-            <input type="radio" id="developTeam" class="teamInput" name="team" required checked="checked" />
+            <input
+              type="radio"
+              id="developTeam"
+              class="teamInput"
+              name="team"
+              value="developTeam"
+              required
+              checked="checked"
+            />
             <label for="developTeam" class="teamInputLabel">개발팀</label>
-            <input type="radio" id="planningTeam" class="teamInput" name="team" required />
+            <input type="radio" id="planningTeam" class="teamInput" name="team" value="planningTeam" required />
             <label for="planningTeam" class="teamInputLabel">기획팀</label>
-            <input type="radio" id="designTeam" class="teamInput" name="team" required />
+            <input type="radio" id="designTeam" class="teamInput" name="team" value="designTeam" required />
             <label for="designTeam" class="teamInputLabel">디자인팀</label>
           </div>
           <h4 id="positionText">직급</h4>
           <div id="positionInputContainer">
-            <input type="radio" id="teamLeader" class="positionInput" name="position" required />
+            <input type="radio" id="teamLeader" class="positionInput" name="position" value="teamLeader" required />
             <label for="teamLeader" class="positionInputLabel">팀장</label>
-            <input type="radio" id="teamMember" class="positionInput" name="position" required checked="checked" />
+            <input
+              type="radio"
+              id="teamMember"
+              class="positionInput"
+              name="position"
+              value="teamMemeber"
+              required
+              checked="checked"
+            />
             <label for="teamMember" class="positionInputLabel">팀원</label>
           </div>
         </article>
