@@ -118,6 +118,7 @@ body {
   transform: scale(1.2);
 }
 #calendarContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 20px 20px;
@@ -181,4 +182,18 @@ body {
 .scheduleTime {
   font-size: 6px;
   margin-left: 4px;
+}
+#modalContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background-color: var(--main-color-light);
+}
+#goBackBtn {
+  width: fit-content;
 }
