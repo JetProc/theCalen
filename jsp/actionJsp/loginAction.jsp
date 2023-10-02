@@ -60,6 +60,8 @@
         }else {
             localStorage.setItem("currentPage", 'homePage')
             localStorage.setItem("name", name)  //HomaPage에서 id를 보여주기 위한 일방적인 저장
+            localStorage.setItem('currentMonth', new Date().getMonth())
+            localStorage.setItem('currentYear', new Date().getFullYear())
             location.href="../pageJsp/homePage.jsp"
         }
     </script>

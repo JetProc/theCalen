@@ -3,11 +3,15 @@ let calendarMenuContainer = document.getElementById('calendarMenuContainer')
 let mypageMenuContainer = document.getElementById('mypageMenuContainer')
 
 function moveToCalendarEvent() {
+  console.log('hi')
   localStorage.setItem('currentPage', 'calendar')
+  localStorage.setItem('currentMonth', new Date().getMonth())
+  localStorage.setItem('currentYear', new Date().getFullYear())
   location.href = './homePage.jsp'
 }
 function moveToMypageEvent() {
   localStorage.setItem('currentPage', 'myPage')
+
   location.href = './myPage.jsp'
 }
 let currentPage = localStorage.getItem('currentPage')

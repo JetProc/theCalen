@@ -1,11 +1,21 @@
 //모달에서 공통으로 쓰이는 부분
-let modalContainer = document.getElementById('modalContainer')
-modalContainer.id = 'modalContainer'
+let modalContainerBackground = document.getElementById('modalContainerBackground')
+
+let modalContainer1 = document.createElement('section')
+modalContainer1.id = 'modalContainer1'
+modalContainer1.className = 'modalContainer'
+
+let modalContainer2 = document.createElement('section')
+modalContainer2.id = 'modalContainer2'
+modalContainer2.className = 'modalContainer'
+
+let modalContainer3 = document.createElement('section')
+modalContainer3.id = 'modalContainer3'
+modalContainer3.className = 'modalContainer'
 
 let goBackBtn = document.createElement('img')
 goBackBtn.src = '../../src/icons/exitIcon.png'
-goBackBtn.id = 'goBackBtn'
-goBackBtn.className = 'additionalText'
+goBackBtn.classList.add('goBackBtn', 'additionalText')
 
 let scheduleContentsInputLabel = document.createElement('label')
 scheduleContentsInputLabel.htmlFor = 'scheduleContentsInput'
@@ -35,12 +45,6 @@ scheduleTimeInput.required = true
 let btnContainer = document.createElement('div')
 btnContainer.id = 'btnContainer'
 
-$(document).ready(function () {
-  $('#goBackBtn').click(function () {
-    modalContainer.style.display = 'none'
-  })
-})
-
 function makeScheduleListModal() {
   let dateText = document.createElement('div')
   dateText.id = 'dateText'
@@ -61,7 +65,8 @@ function makeScheduleListModal() {
     scheduleListsContainer.appendChild(scheduleListContainer)
   }
 
-  modalContainer.append(goBackBtn, dateText, scheduleListsContainer)
+  modalContainer1.append(goBackBtn.cloneNode(false), dateText, scheduleListsContainer)
+  modalContainerBackground.appendChild(modalContainer1)
 }
 
 function makeScheduleInputModal() {
@@ -71,22 +76,26 @@ function makeScheduleInputModal() {
   addBtn.className = 'actionBtn'
   addBtn.value = '추가'
 
-  btnContainer.appendChild(addBtn)
+  let btnContainer1 = btnContainer.cloneNode(true)
+  btnContainer1.appendChild(addBtn)
 
-  modalContainer.append(
-    goBackBtn,
-    scheduleContentsInputLabel,
-    scheduleContentsInput,
-    scheduleTimeInputLabel,
-    scheduleTimeInput,
-    btnContainer
+  modalContainer2.append(
+    goBackBtn.cloneNode(true),
+    scheduleContentsInputLabel.cloneNode(true),
+    scheduleContentsInput.cloneNode(true),
+    scheduleTimeInputLabel.cloneNode(true),
+    scheduleTimeInput.cloneNode(true),
+    btnContainer1
   )
+  modalContainerBackground.appendChild(modalContainer2)
 }
 function makeScheduleModifyModal() {
-  scheduleContentsInput.value = '백엔드에서 받아와야하는 값'
-  scheduleTimeInput.value = '09:44'
+  let scheduleContentsInput2 = scheduleContentsInput.cloneNode(true)
+  scheduleContentsInput2.value = '백엔드에서 받아와야하는 값'
+  let scheduleTimeInput2 = scheduleTimeInput.cloneNode(true)
+  scheduleTimeInput2.value = '09:44'
 
-  scheduleContentsInput.autofocus = false
+  scheduleContentsInput2.autofocus = false
 
   let deleteBtn = document.createElement('input')
   deleteBtn.type = 'button'
@@ -100,16 +109,27 @@ function makeScheduleModifyModal() {
   modifyBtn.className = 'actionBtn'
   modifyBtn.value = '수정'
 
-  btnContainer.append(deleteBtn, modifyBtn)
-  modalContainer.append(
+  let btnContainer2 = btnContainer.cloneNode(true)
+  btnContainer2.append(deleteBtn, modifyBtn)
+  modalContainer3.append(
     goBackBtn,
-    scheduleContentsInputLabel,
-    scheduleContentsInput,
-    scheduleTimeInputLabel,
-    scheduleTimeInput,
-    btnContainer
+    scheduleContentsInputLabel.cloneNode(true),
+    scheduleContentsInput2,
+    scheduleTimeInputLabel.cloneNode(true),
+    scheduleTimeInput2,
+    btnContainer2
   )
+  modalContainerBackground.appendChild(modalContainer3)
 }
+$(document).ready(function () {
+  $('.goBackBtn').click(function () {
+    modalContainerBackground.style.display = 'none'
+
+    modalContainer1.style.display = 'none'
+    modalContainer2.style.display = 'none'
+    modalContainer3.style.display = 'none'
+  })
+})
+makeScheduleListModal()
+makeScheduleInputModal()
 makeScheduleModifyModal()
-//makeScheduleListModal()
-//makeScheduleInputModal()

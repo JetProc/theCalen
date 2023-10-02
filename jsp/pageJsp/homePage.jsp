@@ -45,9 +45,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Calen</title>
-  <link rel="stylesheet" href="../../css/homePage.css" />
   <link rel="stylesheet" href="../../css/common.css" />
-
+  <link rel="stylesheet" href="../../css/homePage.css" />
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -58,25 +57,49 @@
 </head>
 <body>
   <nav id="navBar"></nav>
+  <section id="modalContainerBackground"></section>
   <main id="mainContainer">
     <section id="yearAndMonthContainer">
-      <div id="goPrevMonthBtn" class="goOtherMonthBtn"></div>
+      <div id="goPrevMonthBtn" class="goOtherMonthBtn" onclick="goOtherMonthEvent(-1)"></div>
       <p id="yearAndMonthText">2023년 9월</p>
-      <div id="goNextMonthBtn" class="goOtherMonthBtn"></div>
+      <div id="goNextMonthBtn" class="goOtherMonthBtn" onclick="goOtherMonthEvent(1)"></div>
     </section>
-    <section id="calendarContainer">
-    </section>
-        <section id="modalContainer"></section>
+    <section id="calendarContainer"></section>
   </main>
   <script src="../../js/modal.js"></script>
   <script>
     if(!<%=isLogin%>) location.href = "./loginPage.jsp"
 
     // 각 달의 마지막 날 구해서 리스트에 저장
-    let lastDayList = []
-    for (let i = 0; i < 12; i++) lastDayList.push(new Date(2023, i + 1, 0).getDate())
-    let currentMonth = new Date().getMonth();
-    localStorage.setItem('currentMonth', currentMonth)
+    let currentYear = localStorage.getItem('currentYear')
+    let currentMonth = localStorage.getItem('currentMonth')
+    let lastDay = new Date(currentYear, currentMonth,0).getDate()
+    
+    let yearAndMonthText = document.getElementById('yearAndMonthText')
+    yearAndMonthText.innerText = currentYear+'년 '+currentMonth+'월'
+
+    function goOtherMonthEvent(num){
+        let otherMonth = Number(currentMonth)+Number(num)
+        if(otherMonth>12){
+            otherMonth = 1
+            currentYear = Number(currentYear)+Number(1)
+        }
+        if(otherMonth<1){
+            otherMonth = 12
+            currentYear = Number(currentYear)-Number(1)
+        }
+        localStorage.setItem('currentYear',currentYear)
+        localStorage.setItem('currentMonth',otherMonth)
+        location.reload()
+    }
+
+
+
+
+
+
+
+
 
     //캘린더 그리는 함수
     function renderCalendar() {
@@ -89,6 +112,7 @@
         for (let j = 1; j <= 7; j++) {
         let date = document.createElement('div')
         date.className = 'date'
+
 
         let dateNumber = document.createElement('div')
         dateNumber.className = 'dateNumber'
@@ -115,7 +139,7 @@
             date.appendChild(scheduleContainer)
         }
         week.appendChild(date)
-        if (7 * i + j >= lastDayList[currentMonth - 1]) {
+        if (7 * i + j >= lastDay) {
             calendarContainer.appendChild(week)
             return 0
         }
@@ -124,7 +148,24 @@
     }
     }
     renderCalendar()
+    $(document).ready(function () {
+        $('.date').click(function (event) {
+            event.stopPropagation();
+            modalContainerBackground.style.display = 'flex'
 
+            modalContainer1.style.display = 'none'
+            modalContainer2.style.display = 'flex'
+            modalContainer3.style.display = 'none'
+        })
+        $('.scheduleContainer').click(function (event) {
+            event.stopPropagation();
+            modalContainerBackground.style.display = 'flex'
+
+            modalContainer1.style.display = 'none'
+            modalContainer2.style.display = 'none'
+            modalContainer3.style.display = 'flex'
+        })
+    })
 
   </script>
 </body>
