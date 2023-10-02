@@ -194,6 +194,12 @@ input[type='submit']:hover {
 .currentPage {
   filter: invert(63%) sepia(76%) saturate(1173%) hue-rotate(8deg) brightness(93%) contrast(101%);
 }
+.hideModal {
+  display: none;
+}
+.showModal {
+  display: flex;
+}
 
 /* #title {
   position: absolute;
