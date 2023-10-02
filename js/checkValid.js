@@ -69,7 +69,7 @@ function checkRegisterValidEvent(event) {
 
 //페이지 불러올 때 자동 하이픈
 function autoHypenOnloading() {
-  let phoneNum = document.getElementById('phoneNumber')
+  let phoneNum = document.getElementById('phonenum')
   phoneNum.value = phoneNum.value
     .replace(/[^0-9]/g, '')
     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')

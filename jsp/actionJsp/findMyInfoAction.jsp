@@ -31,6 +31,7 @@
         rs = query.executeQuery();
 
         if(rs.next()) userId = rs.getString(1);
+        
     }else {     //pw 찾기
         findSQL = "SELECT password FROM user WHERE id=? AND name=? AND phonenum=?";  //pw 찾기 쿼리문
         query = connect.prepareStatement(findSQL);

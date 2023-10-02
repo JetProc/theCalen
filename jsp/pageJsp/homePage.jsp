@@ -29,12 +29,12 @@
   <link rel="stylesheet" href="../../css/common.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    // $(function () {
-    //   $('#modalContainer').load('../../html/scheduleList.html')
-    // })
-    // $(function () {
-    //   $('#modalContainer').load('../../html/scheduleInputModal.html')
-    // })
+    $(function () {
+      $('#modalContainer').load('../../html/scheduleList.html')
+    })
+    $(function () {
+      $('#modalContainer').load('../../html/scheduleInputModal.html')
+    })
     $(function () {
       $('#modalContainer').load('../../html/scheduleModifyModal.html')
     })

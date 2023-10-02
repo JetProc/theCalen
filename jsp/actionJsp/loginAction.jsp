@@ -18,23 +18,20 @@
 
     //id와 pw가 일치하는 계정이 있는지 찾는 쿼리문
     String selectIdAndPwSQL = "SELECT * FROM user WHERE id=? AND password=?";
-
     PreparedStatement query = connect.prepareStatement(selectIdAndPwSQL);
-
     query.setString(1, idInput);
     query.setString(2, pwInput);
-    
     ResultSet rs = query.executeQuery();
     
     //밑의 Script tag 에서 사용하기 위해 전역변수로 선언
-    String id = "";
+    String name = "";
 
     //rs에 값이 있다면 실행 (=일치하는 id,pw가 존재한다면 실행 = 로그인에 성공했다면)
     if(rs.next()){
         String idx = rs.getString(1);
-        id = rs.getString(2);
+        String id = rs.getString(2);
         String password = rs.getString(3);
-        String name = rs.getString(4);
+        name = rs.getString(4);
         String phonenum = rs.getString(5);
         String team = rs.getString(6);
         String position = rs.getString(7);
@@ -51,15 +48,18 @@
 
 
 <html>
+    <body>
+    hi
+    </body>
     <script>
-        let id = "<%=id%>"
-        //id가 비어있다면 (=일치하는 계정이 없다면)
-        if(!id){
+        let name = "<%=name%>"
+        //name 변수가 비어있다면 (=일치하는 계정이 없다면)
+        if(!name){
             alert('id나 비밀번호를 다시 확인해주세요.')
             history.back()
         }else {
             localStorage.setItem("currentPage", 'homePage')
-            localStorage.setItem("id", id)  //HomaPage에서 id를 보여주기 위한 일방적인 저장
+            localStorage.setItem("name", name)  //HomaPage에서 id를 보여주기 위한 일방적인 저장
             location.href="../pageJsp/homePage.jsp"
         }
     </script>

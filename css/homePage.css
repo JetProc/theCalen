@@ -63,7 +63,7 @@ body {
   margin-left: 64px;
   margin-top: 48px;
   margin-bottom: 48px;
-  transition: all 0.1s ease-out;
+  transition: all 0.2s ease-out;
   cursor: pointer;
 }
 #calendarMenuContainer:hover,
