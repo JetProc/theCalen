@@ -49,7 +49,7 @@
         let id = "<%=userId%>"
         let pw = "<%=userPw%>"
         if(!id && !pw) {    //id와 pw가 둘 다 없다면 (=계정 정보가 없다면)
-            alert('입력하신 정보에 대한 정보가 존재하지 않습니다.')
+            alert('입력하신 정보에 대한 계정 정보가 존재하지 않습니다.')
             history.back()
         }else if(id){   //id만 있다면 (=id찾기)
             alert('찾으려는 id는 [ ' + id + ' ] 입니다.')
