@@ -48,9 +48,6 @@
 
 
 <html>
-    <body>
-    hi
-    </body>
     <script>
         let name = "<%=name%>"
         //name 변수가 비어있다면 (=일치하는 계정이 없다면)
@@ -58,9 +55,10 @@
             alert('id나 비밀번호를 다시 확인해주세요.')
             history.back()
         }else {
+            let currentMonth = (new Date().getMonth()+1).toString()
             localStorage.setItem("currentPage", 'homePage')
             localStorage.setItem("name", name)  //HomaPage에서 id를 보여주기 위한 일방적인 저장
-            localStorage.setItem('currentMonth', new Date().getMonth())
+            localStorage.setItem('currentMonth', currentMonth.length < 2 ? '0' + currentMonth : currentMonth)
             localStorage.setItem('currentYear', new Date().getFullYear())
             location.href="../pageJsp/homePage.jsp"
         }

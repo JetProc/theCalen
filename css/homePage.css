@@ -185,7 +185,7 @@ body {
   margin-left: 4px;
 }
 .modalContainer {
-  display: none;
+  display: flex;
   flex-direction: column;
   position: absolute;
   left: 50%;
@@ -204,6 +204,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   z-index: 100;
+  font-family: 'GyeonggiTitleM', serif;
 }
 .goBackBtn {
   align-self: flex-end;
@@ -229,6 +230,10 @@ body {
 .inputBox:focus {
   border-bottom: 4px solid var(--main-color-dark);
 }
+.yearAndDateText {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
 #scheduleContentsInput {
   width: 96%;
   margin-bottom: 50px;
@@ -239,11 +244,10 @@ body {
 #btnContainer {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 110px;
+  margin-top: 70px;
 }
 .actionBtn {
   align-self: center;
-  margin-top: 30px;
   width: 110px;
   height: 34px;
   border-radius: 100px;
@@ -297,4 +301,9 @@ body {
   height: 100%;
   z-index: 90;
   background-color: transparent;
+}
+.currentDate {
+  background-color: #b3ab9653;
+  box-sizing: border-box;
+  border-radius: 20px;
 }

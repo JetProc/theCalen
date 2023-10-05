@@ -3,9 +3,9 @@ let calendarMenuContainer = document.getElementById('calendarMenuContainer')
 let mypageMenuContainer = document.getElementById('mypageMenuContainer')
 
 function moveToCalendarEvent() {
-  console.log('hi')
+  let currentMonth = (new Date().getMonth() + 1).toString()
   localStorage.setItem('currentPage', 'calendar')
-  localStorage.setItem('currentMonth', new Date().getMonth())
+  localStorage.setItem('currentMonth', currentMonth.length < 2 ? '0' + currentMonth : currentMonth)
   localStorage.setItem('currentYear', new Date().getFullYear())
   location.href = './homePage.jsp'
 }

@@ -101,7 +101,6 @@
     <script>
 
         if(!<%=isLogin%>) {
-            console.log("Asdfas")
             location.href = "./loginPage.jsp"
         }
         else{

@@ -19,6 +19,8 @@
     String userSessionPosition = "";
 
     boolean isLogin = true;
+    String date = "";
+    String content = "";
     if(userSessionIdx==null) isLogin = false;
     else{
         userSessionTeam = (String)session.getAttribute("team");
@@ -31,11 +33,13 @@
 
         rs.next();
 
+
+
         if(userSessionPosition=="0"){        //만약 팀장이라면
         //쿼리문 하나 더 써서 팀원들 일정까지 싹 불러오기
 
         }else if(userSessionPosition=="1"){          //만약 팀원이라면
-        
+
 
         }
     }
@@ -61,7 +65,7 @@
   <main id="mainContainer">
     <section id="yearAndMonthContainer">
       <div id="goPrevMonthBtn" class="goOtherMonthBtn" onclick="goOtherMonthEvent(-1)"></div>
-      <p id="yearAndMonthText">2023년 9월</p>
+      <p id="yearAndMonthText"></p>
       <div id="goNextMonthBtn" class="goOtherMonthBtn" onclick="goOtherMonthEvent(1)"></div>
     </section>
     <section id="calendarContainer"></section>
@@ -69,12 +73,17 @@
   <script src="../../js/modal.js"></script>
   <script>
     if(!<%=isLogin%>) location.href = "./loginPage.jsp"
+    
+    // 임시 테스트
+    let t1 = "<%=date%>"
+    let t2 = "<%=content%>"
+    console.log(t1,t2)
 
     // 각 달의 마지막 날 구해서 리스트에 저장
     let currentYear = localStorage.getItem('currentYear')
     let currentMonth = localStorage.getItem('currentMonth')
     let lastDay = new Date(currentYear, currentMonth,0).getDate()
-    
+
     let yearAndMonthText = document.getElementById('yearAndMonthText')
     yearAndMonthText.innerText = currentYear+'년 '+currentMonth+'월'
 
@@ -89,7 +98,7 @@
             currentYear = Number(currentYear)-Number(1)
         }
         localStorage.setItem('currentYear',currentYear)
-        localStorage.setItem('currentMonth',otherMonth)
+        localStorage.setItem('currentMonth',otherMonth.toString().length < 2 ? '0' + otherMonth : otherMonth)
         location.reload()
     }
 
@@ -110,60 +119,63 @@
         week.className = 'week'
 
         for (let j = 1; j <= 7; j++) {
-        let date = document.createElement('div')
-        date.className = 'date'
+            let date = document.createElement('div')
+            date.classList.add('date', 'date'+(7 * i + j))
+            date.id = 7 * i + j
+            if (7*i+j == new Date().getDate()){
+                date.classList.add('currentDate')
+            }
 
+            let dateNumber = document.createElement('div')
+            dateNumber.classList.add('dateNumber', 'date'+(7 * i + j))
+            dateNumber.innerText = 7 * i + j
+            date.appendChild(dateNumber)
 
-        let dateNumber = document.createElement('div')
-        dateNumber.className = 'dateNumber'
-        dateNumber.innerText = 7 * i + j
-        date.appendChild(dateNumber)
+            let hiddenText = document.createElement('div')
+            hiddenText.classList.add('hiddenText', 'date'+(7 * i + j))
+            hiddenText.innerText = '눌러서 일정 추가'
+            date.appendChild(hiddenText)
 
-        let hiddenText = document.createElement('div')
-        hiddenText.className = 'hiddenText'
-        hiddenText.innerText = '눌러서 일정 추가'
-        date.appendChild(hiddenText)
+            for (let i = 0; i < 3; i++) {
+                let scheduleContainer = document.createElement('div')
+                scheduleContainer.className = 'scheduleContainer'
+                let scheduleName = document.createElement('div')
+                scheduleName.className = 'scheduleName'
+                scheduleName.innerText = '강아지 밥 주기'
+                scheduleContainer.appendChild(scheduleName)
 
-        for (let i = 0; i < 3; i++) {
-            let scheduleContainer = document.createElement('div')
-            scheduleContainer.className = 'scheduleContainer'
-            let scheduleName = document.createElement('div')
-            scheduleName.className = 'scheduleName'
-            scheduleName.innerText = '강아지 밥 주기'
-            scheduleContainer.appendChild(scheduleName)
-
-            let scheduleTime = document.createElement('div')
-            scheduleTime.className = 'scheduleTime'
-            scheduleTime.innerText = '09:00'
-            scheduleContainer.appendChild(scheduleTime)
-            date.appendChild(scheduleContainer)
-        }
-        week.appendChild(date)
-        if (7 * i + j >= lastDay) {
-            calendarContainer.appendChild(week)
-            return 0
-        }
+                let scheduleTime = document.createElement('div')
+                scheduleTime.className = 'scheduleTime'
+                scheduleTime.innerText = '09:00'
+                scheduleContainer.appendChild(scheduleTime)
+                date.appendChild(scheduleContainer)
+            }
+            week.appendChild(date)
+            if (7 * i + j >= lastDay) {
+                calendarContainer.appendChild(week)
+                return 0
+            }
         }
         calendarContainer.appendChild(week)
     }
     }
     renderCalendar()
+    
     $(document).ready(function () {
         $('.date').click(function (event) {
             event.stopPropagation();
+            let selectedDate = event.target.classList.item(1).substr(4)
             modalContainerBackground.style.display = 'flex'
 
-            modalContainer1.style.display = 'none'
-            modalContainer2.style.display = 'flex'
-            modalContainer3.style.display = 'none'
+            makeScheduleInputModal(selectedDate.length < 2 ? "0"+selectedDate : selectedDate)
+
         })
         $('.scheduleContainer').click(function (event) {
             event.stopPropagation();
+            let selectedDate = event.target.classList.item(1).substr(4)
             modalContainerBackground.style.display = 'flex'
 
-            modalContainer1.style.display = 'none'
-            modalContainer2.style.display = 'none'
-            modalContainer3.style.display = 'flex'
+            makeScheduleModifyModal(selectedDate.length < 2 ? "0"+selectedDate : selectedDate)
         })
     })
 
