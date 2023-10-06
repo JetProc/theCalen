@@ -21,6 +21,7 @@
     String userSessionTeam = "";
     String userSessionPosition = "";
 
+    ArrayList sIdxList = new ArrayList<String>();
     ArrayList yearList = new ArrayList<String>();
     ArrayList monthList = new ArrayList<String>();
     ArrayList dayList = new ArrayList<String>();
@@ -36,7 +37,7 @@
         userSessionTeam = (String)session.getAttribute("team");
         userSessionPosition = (String)session.getAttribute("position");
 
-        String selectMySchedule = "SELECT date, content FROM schedule JOIN user ON user.idx=schedule.user_idx WHERE user.idx=? AND YEAR(date) in (?) AND MONTH(date) IN (?);";
+        String selectMySchedule = "SELECT schedule.idx, date, content FROM schedule JOIN user ON user.idx=schedule.user_idx WHERE user.idx=? AND YEAR(date) in (?) AND MONTH(date) IN (?) ORDER BY date, idx;";
         PreparedStatement query = connect.prepareStatement(selectMySchedule);
         query.setString(1, userSessionIdx);
         query.setString(2, currentYear);
@@ -45,9 +46,11 @@
 
         if(rs.next()){
             do{
+                String sIdx = "\""+rs.getString("idx")+"\"";
                 String _date = "\""+rs.getString("date")+"\"";
                 String content = "\""+rs.getString("content")+"\"";
 
+                sIdxList.add(sIdx);
                 yearList.add(_date.substring(0,5)+"\"");
                 monthList.add("\""+_date.substring(6,8)+"\"");
                 dayList.add("\""+_date.substring(9,11)+"\"");
@@ -61,6 +64,7 @@
             scheduleInfoList.add(timeHourList);
             scheduleInfoList.add(timeMinuteList);
             scheduleInfoList.add(contentList);
+            scheduleInfoList.add(sIdxList);
         }
 
 
@@ -83,6 +87,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Calen</title>
   <link rel="stylesheet" href="../../css/common.css" />
+  <link rel="stylesheet" href="../../css/navBar.css" />
   <link rel="stylesheet" href="../../css/homePage.css" />
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -107,7 +112,7 @@
   <script>
     if(!<%=isLogin%>) location.href = "./loginPage.jsp"
     
-    //test
+    let scheduleInfoList = <%=scheduleInfoList%>
 
     // 각 달의 마지막 날 구해서 리스트에 저장
     let currentYear = localStorage.getItem('currentYear')
@@ -136,7 +141,6 @@
     //캘린더 그리는 함수
     function renderCalendar() {
 
-        let scheduleInfoList = <%=scheduleInfoList%>
         console.log(scheduleInfoList)
 
         let calendarContainer = document.getElementById('calendarContainer')
@@ -167,25 +171,38 @@
                 date.appendChild(hiddenText)
 
                 if(scheduleInfoList.length>0){
-                    for (let i = 0; i < scheduleInfoList[1].length; i++) {
-                        if(scheduleInfoList[0][i]==currentYear 
-                        && scheduleInfoList[1][i]==currentMonth 
-                        && Number(scheduleInfoList[2][i])==date.id){
-                            let scheduleContainer = document.createElement('div')
-                            scheduleContainer.classList.add('scheduleContainer','date'+loopDateNum)
-                            let scheduleName = document.createElement('div')
-                            scheduleName.classList.add('scheduleName','date'+loopDateNum)
-                            scheduleName.innerText = scheduleInfoList[5][i]
-                            scheduleContainer.appendChild(scheduleName)
+                    let scheduleCnt = 0
+                    for (let j = 0; j < scheduleInfoList[1].length; j++) {
+                            if(scheduleInfoList[0][j]==currentYear&&scheduleInfoList[1][j]==currentMonth&& Number(scheduleInfoList[2][j])==date.id){
+                                scheduleCnt++
+                                if(scheduleCnt<=3){
+                                    let scheduleContainer = document.createElement('div')
+                                    scheduleContainer.classList.add('scheduleContainer','date'+loopDateNum, 'sIdx'+scheduleInfoList[6][j])
+                                    let scheduleName = document.createElement('div')
+                                    scheduleName.classList.add('scheduleName','date'+loopDateNum, 'sIdx'+scheduleInfoList[6][j])
+                                    scheduleName.innerText = scheduleInfoList[5][j]
+                                    scheduleContainer.appendChild(scheduleName)
 
-                            let scheduleTime = document.createElement('div')
-                            scheduleTime.classList.add('scheduleTime','date'+loopDateNum)
-                            scheduleTime.innerText = scheduleInfoList[3][i]+':'+scheduleInfoList[4][i]
-                            scheduleContainer.appendChild(scheduleTime)
-                            date.appendChild(scheduleContainer)
-                        }
+                                    let scheduleTime = document.createElement('div')
+                                    scheduleTime.classList.add('scheduleTime','date'+loopDateNum, 'sIdx'+scheduleInfoList[6][j])
+                                    scheduleTime.innerText = scheduleInfoList[3][j]+':'+scheduleInfoList[4][j]
+                                    scheduleContainer.appendChild(scheduleTime)
+                                    date.appendChild(scheduleContainer)
+                                }
+                                else{
+                                    let viewMoreBtn = document.createElement('a')
+                                    viewMoreBtn.innerText = '일정 더보기...'
+                                    viewMoreBtn.classList.add('viewMoreBtn', 'date'+loopDateNum)
+                                    date.appendChild(viewMoreBtn)
+                                    break
+                                }
+                            }
+                        
                     }
                 }
+
+                            
+
                 week.appendChild(date)
                 if (7 * i + j >= lastDay) {
                     calendarContainer.appendChild(week)
@@ -198,6 +215,27 @@
     renderCalendar()
     
     $(document).ready(function () {
+        $('.viewMoreBtn').click(function (event) {
+            event.stopPropagation();
+            let selectedDate = event.target.classList.item(1).substr(4)
+            modalContainerBackground.style.display = 'flex'
+
+            let contentList = []
+            let timeList = []
+            let sIdxList = []
+
+            for (let j = 0; j < scheduleInfoList[1].length; j++) {
+                if(scheduleInfoList[0][j]==currentYear&&scheduleInfoList[1][j]==currentMonth&& Number(scheduleInfoList[2][j])==selectedDate){
+                    contentList.push(scheduleInfoList[5][j])
+                    timeList.push(scheduleInfoList[3][j]+":"+scheduleInfoList[4][j])
+                    sIdxList.push(scheduleInfoList[6][j])
+                }
+            }
+
+            makeScheduleListModal(selectedDate.length < 2 ? "0"+selectedDate : selectedDate, contentList, timeList, sIdxList)
+
+        })
+
         $('.date').click(function (event) {
             event.stopPropagation();
             let selectedDate = event.target.classList.item(1).substr(4)
@@ -206,14 +244,17 @@
             makeScheduleInputModal(selectedDate.length < 2 ? "0"+selectedDate : selectedDate)
 
         })
+
         $('.scheduleContainer').click(function (event) {
             event.stopPropagation();
 
             let selectedElementClassName = event.target.classList.item(0)
             let selectedDate = event.target.classList.item(1).substr(4)
+            let sIdx = event.target.classList.item(2).substr(4)
 
-            let contentValue=[]
-            let dateValue=[]
+            let contentValue=""
+            let dateValue=""
+
             if(selectedElementClassName == 'scheduleContainer'){
                 contentValue = event.target.firstChild.innerText
                 dateValue = event.target.lastChild.innerText
@@ -225,20 +266,9 @@
                 dateValue = event.target.nextSibling.innerText
             }
 
-
-            // let _contentList=document.getElementsByClassName('scheduleName '+event.target.classList.item(1))
-            // let _dateList=document.getElementsByClassName('scheduleTime '+event.target.classList.item(1))
-
-
-
-            // for(let i=0; i<_contentList.length; i++){
-            //     contetnList.push(_contentList[i].innerText)
-            //     dateList.push(_dateList[i].innerText)
-            // }
-
             modalContainerBackground.style.display = 'flex'
 
-            makeScheduleModifyModal(selectedDate.length < 2 ? "0"+selectedDate : selectedDate, contentValue, dateValue)
+            makeScheduleModifyModal(selectedDate.length < 2 ? "0"+selectedDate : selectedDate, contentValue, dateValue, sIdx)
         })
     })
 

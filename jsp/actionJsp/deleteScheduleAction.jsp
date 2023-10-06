@@ -12,24 +12,21 @@
     Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/calendar","stageus","1234");
 
     //세션 가져오기
-    String userSessionIdx = (String)session.getAttribute("idx");
+    String sIdxInput = request.getParameter("sIdxValue");
 
-    String deleteAccountSQL = "DELETE FROM user WHERE idx=?;";
+    String deleteScheduleSQL = "DELETE FROM schedule WHERE idx=?;";
 
-    PreparedStatement query4 = connect.prepareStatement(deleteAccountSQL);
+    PreparedStatement query = connect.prepareStatement(deleteScheduleSQL);
 
-    query4.setString(1, userSessionIdx);
+    query.setString(1, sIdxInput);
 
-    query4.executeUpdate();
+    query.executeUpdate();
 
-    //세션 삭제
-    session.invalidate();
 %>
 
 <html>
     <script>
-        localStorage.clear()
-        alert('성공적으로 탈퇴하었습니다.')
-        location.href = "../pageJsp/homePage.jsp"
-    </script>
+        let currentYear = localStorage.getItem('currentYear')
+        let currentMonth = localStorage.getItem('currentMonth')
+        location.href = `../pageJsp/homePage.jsp?currentYear=` + currentYear + `&currentMonth=` + currentMonth    </script>
 </html>

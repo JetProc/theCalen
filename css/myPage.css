@@ -3,85 +3,8 @@ body {
   width: 100%;
   user-select: none;
 }
-#navBar {
-  display: flex;
-  flex-direction: column;
-  width: 260px;
-  height: 100vh;
-  background-color: var(--main-color-light);
-}
-
-#headerContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-}
-#headerPicture {
-  width: 40px;
-  margin: 0 8px;
-}
-#headerTitle {
-  font-family: 'JetBrains Mono', serif;
-  font-size: 28px;
-  letter-spacing: 0.1rem;
-  color: var(--main-color);
-  text-shadow: 3px 3px 1px #5b5b5b;
-}
-
-#profileContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 16px;
-  font-family: 'GyeonggiTitleM', serif;
-}
-#welcomeText {
-  font-size: 16px;
-  margin-top: 6px;
-}
-#logoutBtn {
-  margin-top: 10px;
-  font-size: 12px;
-}
-#userProfileIcon {
-  width: 70px;
-}
-
-#menuContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 0 auto;
-  font-family: 'GyeonggiTitleM', serif;
-}
-#calendarMenuContainer,
-#mypageMenuContainer {
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  margin-left: 64px;
-  margin-top: 48px;
-  margin-bottom: 48px;
-  transition: all 0.1s ease-out;
-  cursor: pointer;
-}
-#calendarMenuContainer:hover,
-#mypageMenuContainer:hover {
-  transform: scale(1.1);
-}
-.menuIcon {
-  width: 40px;
-}
-#calendarIcon {
-  margin-right: 10px;
-}
-#mypageIcon {
-  margin-right: 6px;
-}
 
 /* main */
-
 #mainContainer {
   display: flex;
   justify-content: center;

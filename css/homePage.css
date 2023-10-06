@@ -3,82 +3,7 @@ body {
   width: 100%;
   user-select: none;
 }
-#navBar {
-  display: flex;
-  flex-direction: column;
-  width: 260px;
-  height: 100vh;
-  background-color: var(--main-color-light);
-}
 
-#headerContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-}
-#headerPicture {
-  width: 40px;
-  margin: 0 8px;
-}
-#headerTitle {
-  font-family: 'JetBrains Mono', serif;
-  font-size: 28px;
-  letter-spacing: 0.1rem;
-  color: var(--main-color);
-  text-shadow: 3px 3px 1px #5b5b5b;
-}
-
-#profileContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 16px;
-  font-family: 'GyeonggiTitleM', serif;
-}
-#welcomeText {
-  font-size: 16px;
-  margin-top: 6px;
-}
-#logoutBtn {
-  margin-top: 10px;
-  font-size: 12px;
-}
-#userProfileIcon {
-  width: 70px;
-}
-
-#menuContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 0 auto;
-  font-family: 'GyeonggiTitleM', serif;
-}
-#calendarMenuContainer,
-#mypageMenuContainer {
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  margin-left: 64px;
-  margin-top: 48px;
-  margin-bottom: 48px;
-  transition: all 0.2s ease-out;
-  cursor: pointer;
-}
-#calendarMenuContainer:hover,
-#mypageMenuContainer:hover {
-  transform: scale(1.1);
-}
-.menuIcon {
-  width: 40px;
-}
-#calendarIcon {
-  margin-right: 10px;
-}
-#mypageIcon {
-  margin-right: 4px;
-}
 /* main */
 #mainContainer {
   display: flex;
@@ -130,7 +55,7 @@ body {
 .date {
   display: flex;
   flex-direction: column;
-  padding: 14px;
+  padding: 10px;
   width: 170px;
   height: 140px;
   position: relative;
@@ -153,13 +78,13 @@ body {
   display: none;
   position: absolute;
   font-size: 12px;
-  top: 20px;
+  top: 14px;
   right: 20px;
   opacity: 0.5;
 }
 
 .dateNumber {
-  font-size: 26px;
+  font-size: 20px;
   margin-bottom: 4px;
 }
 .scheduleContainer {
@@ -167,12 +92,17 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 4px 6px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   border-radius: 20px;
   cursor: pointer;
   z-index: 10;
 
+  border: 1px solid rgba(173, 173, 173, 0.451);
+  transition: all 0.1s ease-out;
   background-color: var(--main-color-light);
+}
+.scheduleContainer:hover {
+  border: 1px solid rgba(106, 106, 106, 0.711);
 }
 .scheduleName {
   white-space: nowrap;
@@ -268,6 +198,7 @@ body {
   margin-top: 16px;
   box-sizing: border-box;
   overflow: auto;
+  overflow-x: hidden;
 }
 #scheduleListsContainer::-webkit-scrollbar {
   background-color: var(--main-color-lighter);
@@ -283,9 +214,16 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
+  margin: 0 6px;
   border-radius: 20px;
   border: 1px solid #9090907f;
+  transition: all 0.1s ease-out;
+  cursor: pointer;
   margin: 16px 0;
+}
+.scheduleListContainer:hover {
+  border: 1px solid #3d3d3ddf;
+  transform: scale(1.01);
 }
 .scheduleListName {
   font-size: 18px;
@@ -306,4 +244,19 @@ body {
   background-color: #b3ab9653;
   box-sizing: border-box;
   border-radius: 20px;
+}
+.viewMoreBtn {
+  width: fit-content;
+  font-size: 10px;
+  padding: 3px;
+  margin-top: 4px;
+  border: 1px solid rgba(137, 137, 137, 0.66);
+  transition: all 0.1s ease-out;
+  border-radius: 16px;
+  cursor: pointer;
+  background-color: #e6d090;
+}
+.viewMoreBtn:hover {
+  border: 1px solid rgba(61, 61, 61, 0.711);
+  transform: scale(1.05);
 }
