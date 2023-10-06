@@ -43,6 +43,7 @@
         session.setAttribute("phonenum", phonenum);
         session.setAttribute("team", team);
         session.setAttribute("position", position);
+    
     }
 %>
 
@@ -55,12 +56,15 @@
             alert('id나 비밀번호를 다시 확인해주세요.')
             history.back()
         }else {
-            let currentMonth = (new Date().getMonth()+1).toString()
+            let currentYear = new Date().getFullYear()
+            let _currentMonth = (new Date().getMonth()+1).toString()
+            let currentMonth = _currentMonth.length < 2 ? '0' + _currentMonth : _currentMonth
+
             localStorage.setItem("currentPage", 'homePage')
-            localStorage.setItem("name", name)  //HomaPage에서 id를 보여주기 위한 일방적인 저장
-            localStorage.setItem('currentMonth', currentMonth.length < 2 ? '0' + currentMonth : currentMonth)
-            localStorage.setItem('currentYear', new Date().getFullYear())
-            location.href="../pageJsp/homePage.jsp"
+            localStorage.setItem("name", name)
+            localStorage.setItem('currentYear', currentYear)
+            localStorage.setItem('currentMonth', currentMonth)
+            location.href=`../pageJsp/homePage.jsp?currentYear=`+currentYear+`&currentMonth=`+currentMonth
         }
     </script>
 </html>

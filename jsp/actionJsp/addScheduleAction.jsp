@@ -32,6 +32,8 @@
 
 <html>
     <script>
-        location.href="../pageJsp/homePage.jsp"
+        let currentYear = localStorage.getItem('currentYear')
+        let currentMonth = localStorage.getItem('currentMonth')
+        location.href = `../pageJsp/homePage.jsp?currentYear=` + currentYear + `&currentMonth=` + currentMonth
     </script>
 </html>

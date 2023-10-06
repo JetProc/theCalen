@@ -47,17 +47,18 @@
             if (confirm('정말로 탈퇴 하시겠습니까?')) location.href = '../actionJsp/deleteAccountAction.jsp'
         }
     </script>
+    <script src="../../js/checkValid.js"></script>
 </head>
-<body onload="autoHypenOnloading()">
+<body>
     <nav id="navBar"></nav>
     <main id="mainContainer">
         <form action="../actionJsp/modifyAccountAction.jsp" id="contentsContainer" onsubmit="return checkRegisterValidEvent(event)">
         <h3 id="mypageText">마이페이지</h3>
         <article id="inputContainer">
-            <input type="text" placeholder="아이디 입력(4~12자)" class="inputBox" name="id" value=<%=userSessionId%> required />
-            <input type="password" placeholder="비밀번호 입력(영문, 숫자, 특수문자를 포함한 6~20자)" class="inputBox" name="pw" required />
-            <input type="password" placeholder="비밀번호 확인" class="inputBox" name="confirmPw" required />
-            <input type="text" placeholder="이름" class="inputBox" name="name" value=<%=userSessionName%> required />
+            <input type="text" placeholder="아이디 입력(4~12자)" class="inputBox" name="id" id="id" value=<%=userSessionId%> required />
+            <input type="password" placeholder="비밀번호 입력(영문, 숫자, 특수문자를 포함한 6~20자)" class="inputBox" name="pw" id="pw" required />
+            <input type="password" placeholder="비밀번호 확인" class="inputBox" name="confirmPw" id="confirmPw" required />
+            <input type="text" placeholder="이름" class="inputBox" name="name" id="name" value=<%=userSessionName%> required />
             <input type="tel" placeholder="핸드폰 번호('-' 없이 숫자만 입력)" maxlength="13" class="inputBox" id="phonenum" name="phonenum" oninput="autoHyphen(this)" value=<%=userSessionPhonenum%> required />
             <h4 id="teamText">부서</h4>
             <div id="teamInputContainer">

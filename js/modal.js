@@ -60,7 +60,7 @@ function makeScheduleInputModal(date) {
   goBackBtn.classList.add('goBackBtn', 'additionalText')
 
   let yearAndDateText = document.createElement('p')
-  yearAndDateText.innerText = '2023년 9월 10일'
+  yearAndDateText.innerText = currentYear + '년 ' + currentMonth + '월 ' + date + '일'
   yearAndDateText.className = 'yearAndDateText'
 
   let scheduleContentsInputLabel = document.createElement('label')
@@ -122,7 +122,8 @@ function makeScheduleInputModal(date) {
     })
   })
 }
-function makeScheduleModifyModal(date) {
+
+function makeScheduleModifyModal(date, contentValue, dateValue) {
   let modalContainer3 = document.createElement('form')
   modalContainer3.id = 'modalContainer3'
   modalContainer3.className = 'modalContainer'
@@ -136,6 +137,10 @@ function makeScheduleModifyModal(date) {
   let goBackBtn = document.createElement('img')
   goBackBtn.src = '../../src/icons/exitIcon.png'
   goBackBtn.classList.add('goBackBtn', 'additionalText')
+
+  let yearAndDateText = document.createElement('p')
+  yearAndDateText.innerText = currentYear + '년 ' + currentMonth + '월 ' + date + '일'
+  yearAndDateText.className = 'yearAndDateText'
 
   let scheduleContentsInputLabel = document.createElement('label')
   scheduleContentsInputLabel.htmlFor = 'scheduleContentsInput'
@@ -155,11 +160,6 @@ function makeScheduleModifyModal(date) {
   scheduleTimeInputLabel.className = 'inputLabel'
   scheduleTimeInputLabel.innerText = '일정 시간'
 
-  scheduleContentsInput.value = '백엔드에서 받아와야하는 값'
-
-  let scheduleTimeInput2 = scheduleTimeInput.cloneNode(true)
-  scheduleTimeInput2.value = '09:44'
-
   let scheduleTimeInput = document.createElement('input')
   scheduleTimeInput.type = 'time'
   scheduleTimeInput.id = 'scheduleTimeInput'
@@ -168,14 +168,23 @@ function makeScheduleModifyModal(date) {
   scheduleTimeInput.value = '09:00'
   scheduleTimeInput.required = true
 
+  scheduleContentsInput.value = contentValue
+  scheduleTimeInput.value = dateValue
+
   let deleteBtn = document.createElement('input')
   deleteBtn.type = 'submit'
+
+  deleteBtn.formAction = ''
+
   deleteBtn.id = 'deleteBtn'
   deleteBtn.className = 'actionBtn'
   deleteBtn.value = '삭제'
 
   let modifyBtn = document.createElement('input')
   modifyBtn.type = 'submit'
+
+  modifyBtn.formAction = ''
+
   modifyBtn.id = 'modifyBtn'
   modifyBtn.className = 'actionBtn'
   modifyBtn.value = '수정'
@@ -186,8 +195,9 @@ function makeScheduleModifyModal(date) {
 
   modalContainer3.append(
     goBackBtn,
+    yearAndDateText,
     scheduleContentsInputLabel,
-    scheduleContentsInput2,
+    scheduleContentsInput,
     scheduleTimeInputLabel,
     scheduleTimeInput,
     btnContainer
@@ -201,16 +211,3 @@ function makeScheduleModifyModal(date) {
     })
   })
 }
-// $(document).ready(function () {
-//   $('.goBackBtn').click(function () {
-//     modalContainerBackground.style.display = 'none'
-//     modalContainer1.style.display = 'none'
-//     modalContainer2.style.display = 'none'
-//     modalContainer3.style.display = 'none'
-
-//     localStorage.removeItem('selectedDate')
-//   })
-// })
-// makeScheduleInputModal()
-// makeScheduleModifyModal()
-// makeScheduleModifyModal()
