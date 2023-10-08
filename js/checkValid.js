@@ -1,3 +1,5 @@
+//각종 유효성 검사 js
+
 function checkIsIdValid() {
   const idRegex = /^[a-z]+[a-z0-9]{3,13}$/g
   let id = document.getElementById('id')
@@ -8,6 +10,7 @@ function checkIsIdValid() {
     return false
   } else return true
 }
+
 function checkIsPwValid() {
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[~!@#$%^&*+=_-])(?=.*[0-9]).{6,20}$/
   let pw = document.getElementById('pw')
@@ -67,7 +70,6 @@ function checkRegisterValidEvent(event) {
   return checkIsIdValid() && checkIsPwValid() && checkIsPwSame() && checkIsNameValid() && checkIsPhoneNumberValid()
 }
 
-//페이지 불러올 때 자동 하이픈
 function autoHypenOnloading() {
   let phoneNum = document.getElementById('phonenum')
   phoneNum.value = phoneNum.value
@@ -75,8 +77,6 @@ function autoHypenOnloading() {
     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
     .replace(/(\-{1,2})$/g, '')
 }
-
-//숫자 입력할 때 실시간 자동 하이픈
 const autoHyphen = target => {
   target.value = target.value
     .replace(/[^0-9]/g, '')

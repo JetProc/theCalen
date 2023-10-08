@@ -1,6 +1,7 @@
 #navBar {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 260px;
   height: 100vh;
   background-color: var(--main-color-light);
@@ -55,7 +56,6 @@
   display: flex;
   align-items: center;
   width: fit-content;
-  margin-left: 64px;
   transition: all 0.2s ease-out;
   cursor: pointer;
 }
@@ -75,11 +75,23 @@
 /* 팀장 관련 */
 #teamMemberContainer {
   display: flex;
+  flex-direction: column;
+  align-items: baseline;
   flex: 2 0 auto;
-  justify-content: center;
-  background-color: blue;
+  width: 140px;
   font-family: 'GyeonggiTitleM', serif;
 }
-#teamMemberList {
+#teamMemberListText {
+  display: flex;
+  align-self: center;
+  margin-bottom: 20px;
   font-size: 20px;
+}
+.memberContainer {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 14px;
+}
+.members {
+  margin-right: 6px;
 }

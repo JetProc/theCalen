@@ -1,8 +1,10 @@
+//모달을 만드는 js
+
 //모달에서 공통으로 쓰이는 부분
 let modalContainerBackground = document.getElementById('modalContainerBackground')
 
 //스케줄 리스트를 보여주는 모달
-function makeScheduleListModal(date, contentList, timeList, sIdxList) {
+function makeScheduleListModal(date, contentList, timeList, sIdxList, nameList) {
   let modalContainer1 = document.createElement('form')
   modalContainer1.id = 'modalContainer1'
   modalContainer1.className = 'modalContainer'
@@ -26,11 +28,16 @@ function makeScheduleListModal(date, contentList, timeList, sIdxList) {
     scheduleListName.classList.add('scheduleListName', 'sIdx' + sIdxList[i])
     scheduleListName.innerText = contentList[i]
 
+    let scheduleListMember = document.createElement('div')
+    scheduleListMember.classList.add('scheduleListMember', 'sIdx' + sIdxList[i])
+    scheduleListMember.innerText = nameList[i]
+
     let scheduleListTime = document.createElement('div')
     scheduleListTime.classList.add('scheduleListTime', 'sIdx' + sIdxList[i])
-    scheduleListTime.innerText = timeList[i]
+    if (timeList[i] == '0' || timeList[i] == undefined) scheduleListTime.innerText = ''
+    else scheduleListTime.innerText = timeList[i]
 
-    scheduleListContainer.append(scheduleListName, scheduleListTime)
+    scheduleListContainer.append(scheduleListName, scheduleListMember, scheduleListTime)
     scheduleListsContainer.appendChild(scheduleListContainer)
   }
 
@@ -149,7 +156,7 @@ function makeScheduleInputModal(date) {
 }
 
 //스케줄을 확인, 수정, 삭제할 수 있는 모달
-function makeScheduleModifyModal(date, contentValue, dateValue, sIdx) {
+function makeScheduleModifyModal(date, contentValue, dateValue, sIdx, uIdx) {
   let modalContainer3 = document.createElement('form')
   modalContainer3.id = 'modalContainer3'
   modalContainer3.className = 'modalContainer'
@@ -219,6 +226,11 @@ function makeScheduleModifyModal(date, contentValue, dateValue, sIdx) {
   sIdxValue.name = 'sIdxValue'
   sIdxValue.value = sIdx
 
+  let uIdxValue = document.createElement('input')
+  uIdxValue.type = 'hidden'
+  uIdxValue.name = 'uIdxValue'
+  uIdxValue.value = uIdx
+
   modalContainer3.append(
     goBackBtn,
     yearAndDateText,
@@ -228,7 +240,8 @@ function makeScheduleModifyModal(date, contentValue, dateValue, sIdx) {
     scheduleTimeInput,
     btnContainer,
     localStorageDate,
-    sIdxValue
+    sIdxValue,
+    uIdxValue
   )
   modalContainerBackground.appendChild(modalContainer3)
 

@@ -41,9 +41,6 @@
     <link rel="stylesheet" href="../../css/myPage.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(function () {
-           $('#navBar').load('../../html/navBar.html')
-        })
         function checkDeleteAccountEvent() {
             if (confirm('정말로 탈퇴 하시겠습니까?')) location.href = '../actionJsp/deleteAccountAction.jsp'
         }
@@ -51,7 +48,27 @@
     <script src="../../js/checkValid.js"></script>
 </head>
 <body>
-    <nav id="navBar"></nav>
+    <nav id="navBar">
+        <section id="headerContainer">
+            <img src="../../src/pictures/headerPicture.png" alt="headerPicture" id="headerPicture" />
+            <h1 id="headerTitle">The Calen</h1>
+        </section>
+        <section id="profileContainer">
+            <img src="../../src/icons/profileIcon.png" id="userProfileIcon" />
+            <p id="welcomeText"></p>
+            <a href="../actionJsp/logoutAction.jsp" id="logoutBtn" class="additionalText">로그아웃</a>
+        </section>
+        <section id="menuContainer">
+            <div id="calendarMenuContainer" onclick="moveToCalendarEvent()">
+                <img src="../../src/icons/calenderIcon.png" alt="calendarIcon" id="calendarIcon" class="menuIcon" />
+                <h2>캘린더</h2>
+            </div>
+            <div id="mypageMenuContainer" onclick="moveToMypageEvent()">
+                <img src="../../src/icons/profileIcon.png" alt="profileIcon" id="mypageIcon" class="menuIcon" />
+                <h2>마이페이지</h2>
+            </div>
+        </section>
+    </nav>
     <main id="mainContainer">
         <form action="../actionJsp/modifyAccountAction.jsp" id="contentsContainer" onsubmit="return checkRegisterValidEvent(event)">
         <h3 id="mypageText">마이페이지</h3>
@@ -100,6 +117,7 @@
         </form>
     </main>
     <script src="../../js/checkValid.js"></script>
+    <script src="../../js/navBar.js"></script>
     <script>
 
         if(!<%=isLogin%>) {

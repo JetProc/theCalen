@@ -43,6 +43,8 @@
         session.setAttribute("phonenum", phonenum);
         session.setAttribute("team", team);
         session.setAttribute("position", position);
+        session.setAttribute("showedMemberIdxList","");
+
     
     }
 %>
