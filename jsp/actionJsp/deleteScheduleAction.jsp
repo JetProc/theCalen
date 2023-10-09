@@ -19,7 +19,7 @@
     String sIdxInput = request.getParameter("sIdxValue");
 
     if(uIdxInput.equals("0")){  //본인 일정이라면
-        String deleteScheduleSQL = "DELETE FROM schedule WHERE idx=?;";
+        String deleteScheduleSQL = "DELETE FROM schedule WHERE idx=?;"; //AND 문으로 user_idx가 현재 로그인된 유저 idx와 같을 때에만 DELETE
         PreparedStatement query = connect.prepareStatement(deleteScheduleSQL);
         query.setString(1, sIdxInput);
         query.executeUpdate();

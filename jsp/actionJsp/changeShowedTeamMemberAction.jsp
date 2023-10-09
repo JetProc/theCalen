@@ -12,6 +12,7 @@
     Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/calendar","stageus","1234");
 
     ArrayList showedMemberIdxList = new ArrayList<String>();
+    
     if(request.getParameterValues("members")!=null){
         for(int i=0; i<request.getParameterValues("members").length; i++){
             showedMemberIdxList.add((String)request.getParameterValues("members")[i]);

@@ -74,6 +74,7 @@
     <script>
         let isIdExist = <%=isIdExist%>
         let isPhonenumExist = <%=isPhonenumExist%>
+        
         if(isIdExist){
             alert('id가 중복입니다.')
             history.back()
